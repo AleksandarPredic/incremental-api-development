@@ -2,6 +2,39 @@
 
 Tutorial used: https://laracasts.com/series/incremental-api-development
 
+## Steps to create an API
+
+1. sail artisan make:model Lesson -mfcsr - Create model, factory, controler, seeder and make it resource
+
+2. sail artisan db:seed
+
+3. Handling resource not found By default when a specified model is not found, Laravel will throw a ModelNotFoundException and renders a 404 page. Since we are building an API, we want to handle the exception and throw an API friendly error message.
+   See: https://laravel.com/docs/10.x/errors#rendering-exceptions
+```php
+   // app/Exceptions/Handler.php
+   // Add this method
+
+   public function register(): void
+    {
+        $this->renderable(function (NotFoundHttpException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'Record not found.'
+                ], 404);
+            }
+        });
+    }
+```
+just update the register. Don't forget to add
+
+```php
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+```
+
+4. Use larave resource and resource collection - https://laravel.com/docs/10.x/eloquent-resources
+
+
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
