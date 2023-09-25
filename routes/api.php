@@ -18,11 +18,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*Route::middleware('auth.basic')->prefix('v1')->group(function () {
+// Protect all routes
+/*Route::middleware('auth.basic.static')->prefix('v1')->group(function () {
     Route::resource('lessons', \App\Http\Controllers\LessonController::class);
 });*/
 
 Route::prefix('v1')->group(function () {
-    Route::resource('lessons', \App\Http\Controllers\LessonController::class);
+    Route::apiResource('lessons', \App\Http\Controllers\LessonController::class, ['except' => ['store']]);
+});
+
+Route::middleware('auth.basic.static')->prefix('v1')->group(function () {
+    Route::apiResource('lessons', \App\Http\Controllers\LessonController::class, ['only' => ['store']]);
 });
 

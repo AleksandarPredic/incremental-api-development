@@ -112,4 +112,16 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Basic Auth Static
+    |--------------------------------------------------------------------------
+    |
+    | Use static username and password from config
+    |
+    */
+    'sso' => [
+        'username' => env('SSO_USERNAME', 'laravel'),
+        'password' => env('SSO_PASSWORD', 'password'),
+    ]
 ];

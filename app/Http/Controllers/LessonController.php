@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\BookResource;
 use App\Http\Resources\LessonCollection;
 use App\Http\Resources\LessonResource;
 use App\Models\Lesson;
@@ -27,19 +26,21 @@ class LessonController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        // https://laravel.com/docs/10.x/validation#validation-error-response-format
+        //dd($request);
+
+        // TODO: Continue saving form. Lesson 007. https://blog.avenuecode.com/the-best-way-to-use-request-validation-in-laravel-rest-api
+        $attributes = $request->validate([
+           'title' => 'required',
+           'body' => 'required',
+           'active' => 'required|boolean',
+        ]);
+
+        dd($attributes);
     }
 
     /**
@@ -49,14 +50,6 @@ class LessonController extends Controller
     {
         // https://laravel.com/docs/10.x/eloquent-resources#concept-overview
         return new LessonResource($lesson);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Lesson $lesson)
-    {
-        //
     }
 
     /**

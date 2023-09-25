@@ -33,6 +33,32 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 ```
 
 4. Use laravel resource and resource collection - https://laravel.com/docs/10.x/eloquent-resources
+5. Add static Basic auth Middleware https://laravel.com/docs/10.x/middleware#introduction
+   1. sail artisan make:middleware BasicAuthStatic
+   2. See the created class in this project `app/Http/Middleware/BasicAuthStatic.php`
+   3. Add middleware alias in `app/Http/Kernel.php`. Add this under `The application's middleware aliases.`: `'auth.basic.static' => BasicAuthStatic::class,`
+   4. Use the middleware as 
+   ```php 
+    Route::middleware('auth.basic.static')->prefix('v1')->group(function () {
+      Route::resource('lessons', \App\Http\Controllers\LessonController::class, ['only' => ['store']]);
+    });
+   ```
+   5. Add .env and .env.example values `SSO_USERNAME=` and `SSO_PASSWORD=`
+   6. Register config values in `config/auth.php` as 
+   ```php 
+     /*
+      |--------------------------------------------------------------------------
+      | Basic Auth Static
+      |--------------------------------------------------------------------------
+      |
+      | Use static username and password from config
+      |
+      */
+      'sso' => [
+      'username' => env('SSO_USERNAME', 'laravel'),
+      'password' => env('SSO_PASSWORD', 'password'),
+      ]```
+6. 
 
 
 
