@@ -15,6 +15,6 @@ class LessonSeeder extends Seeder
     {
         Lesson::truncate();
 
-        Lesson::factory()->count(10)->create();
+        Lesson::factory()->count(30)->create();
     }
 }

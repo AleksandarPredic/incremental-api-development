@@ -32,7 +32,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 ```
 
-4. Use larave resource and resource collection - https://laravel.com/docs/10.x/eloquent-resources
+4. Use laravel resource and resource collection - https://laravel.com/docs/10.x/eloquent-resources
 
 
 

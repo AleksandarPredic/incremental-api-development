@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BookResource;
+use App\Http\Resources\LessonCollection;
+use App\Http\Resources\LessonResource;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
 
@@ -13,17 +15,15 @@ class LessonController extends Controller
      */
     public function index()
     {
-        // awful practice
+        // awful practice for using Lesson::all();
         // 1. No pagination - All is bad
         // 2. No way to attach meta data
         // 3. Linking DB structure to the API output
         // 4. No way to signal headers/response code
+
         $lessons = Lesson::all();
-
-        return Response()->json([
-            'data' => $lessons->toArray()
-        ]);
-
+        // https://laravel.com/docs/10.x/eloquent-resources#resource-collections
+        return new LessonCollection(Lesson::paginate());
     }
 
     /**
@@ -47,9 +47,8 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-        return Response()->json([
-            'data' => $lesson
-        ]);
+        // https://laravel.com/docs/10.x/eloquent-resources#concept-overview
+        return new LessonResource($lesson);
     }
 
     /**

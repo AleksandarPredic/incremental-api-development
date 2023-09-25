@@ -18,8 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1'], function () {
+/*Route::middleware('auth.basic')->prefix('v1')->group(function () {
+    Route::resource('lessons', \App\Http\Controllers\LessonController::class);
+});*/
+
+Route::prefix('v1')->group(function () {
     Route::resource('lessons', \App\Http\Controllers\LessonController::class);
 });
-
 
