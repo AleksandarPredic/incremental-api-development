@@ -4,7 +4,7 @@ Tutorial used: https://laracasts.com/series/incremental-api-development
 
 ## Steps to create an API
 
-1. sail artisan make:model Lesson -mfcsr - Create model, factory, controler, seeder and make it resource
+1. sail artisan make:model Lesson -mfcsr --api - Create model, factory, controler, seeder and make it resource
 
 2. sail artisan db:seed
 
