@@ -57,8 +57,21 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
       'sso' => [
       'username' => env('SSO_USERNAME', 'laravel'),
       'password' => env('SSO_PASSWORD', 'password'),
-      ]```
-6. 
+      ]
+   ```
+6. Validating store requests
+   1. Resources in files:
+      1. LessonController@store
+      2. app/Http/Requests/LessonPostRequest.php 
+   2. Resources tuts:
+      1. https://laravel.com/docs/10.x/validation#form-request-validation
+      2. https://blog.avenuecode.com/the-best-way-to-use-request-validation-in-laravel-rest-api
+   3. Steps:
+      1. Create a form request class `sail artisan make:request LessonPostRequest`
+      2. Customize the class rules and add `failedValidation` method to return `json`
+7. Continue on lesson 8
+
+---------------------------------
 
 
 

@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LessonPostRequest;
 use App\Http\Resources\LessonCollection;
 use App\Http\Resources\LessonResource;
+use App\Http\Traits\RestApiResponseTrait;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
+    use RestApiResponseTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -28,19 +32,22 @@ class LessonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LessonPostRequest $request)
     {
         // https://laravel.com/docs/10.x/validation#validation-error-response-format
-        //dd($request);
 
-        // TODO: Continue saving form. Lesson 007. https://blog.avenuecode.com/the-best-way-to-use-request-validation-in-laravel-rest-api
-        $attributes = $request->validate([
-           'title' => 'required',
-           'body' => 'required',
-           'active' => 'required|boolean',
+        // The incoming request is valid...
+
+        // Retrieve a portion of the validated input data...
+        $validated = $request->safe()->only(['title', 'body', 'active']);
+
+        Lesson::create([
+            'title' => $validated['title'],
+            'body' => $validated['body'],
+            'some_bool' => $validated['active'],
         ]);
 
-        dd($attributes);
+        return $this->respondCreated();
     }
 
     /**

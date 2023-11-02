@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('lessons', \App\Http\Controllers\LessonController::class, ['except' => ['store']]);
 });
 
+// Protect only one route
 Route::middleware('auth.basic.static')->prefix('v1')->group(function () {
     Route::apiResource('lessons', \App\Http\Controllers\LessonController::class, ['only' => ['store']]);
 });
