@@ -102,5 +102,4 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
     6. See test example class for this lesson - `tests/Feature/LessonsTest.php`
     7. How to run tests: sail artisan test
     8. How to test one test class: sail artisan test --filter LessonsTest
-11. Continue on lesson 11
       
