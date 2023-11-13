@@ -87,7 +87,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
            Schema::enableForeignKeyConstraints();
        ```
 9. Subresources - 009 - incremental-api-part-8-tags-and-subresources
-10. 010 - incremental-apis-10-readable-tests
+10. 010 - incremental-apis-10-readable-tests and lesson 11
     1. Create a new testing `Feature` or `Unit` folder.
     2. It is recommended to keep the seeding for one class only so we don't depend on seeder classes in other testing 
     classes. This means simply to see the data we need for that test class only. To achieve this we need to use the 

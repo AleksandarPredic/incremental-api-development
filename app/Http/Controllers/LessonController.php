@@ -42,13 +42,13 @@ class LessonController extends Controller
         // Retrieve a portion of the validated input data...
         $validated = $request->safe()->only(['title', 'body', 'active']);
 
-        Lesson::create([
+        $lesson = Lesson::create([
             'title' => $validated['title'],
             'body' => $validated['body'],
             'some_bool' => $validated['active'],
         ]);
 
-        return $this->respondCreated();
+        return $this->respondCreated($lesson->id);
     }
 
     /**

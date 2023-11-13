@@ -4,10 +4,12 @@ namespace App\Http\Traits;
 
 trait RestApiResponseTrait
 {
-    protected function respondCreated($message = null)
+    protected function respondCreated($id)
     {
         return response()->json([
-            'message' => $message ?? 'Created successfully.'
+            'data' => [
+                'id' => $id
+            ],
         ], 201);
     }
 }
