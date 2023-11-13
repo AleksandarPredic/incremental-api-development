@@ -87,5 +87,20 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
            Schema::enableForeignKeyConstraints();
        ```
 9. Subresources - 009 - incremental-api-part-8-tags-and-subresources
-10. COntinue with lesson 10
+10. 010 - incremental-apis-10-readable-tests
+    1. Create a new testing `Feature` or `Unit` folder.
+    2. It is recommended to keep the seeding for one class only so we don't depend on seeder classes in other testing 
+    classes. This means simply to see the data we need for that test class only. To achieve this we need to use the 
+    `use Illuminate\Foundation\Testing\RefreshDatabase;` - see `tests/Feature/LessonsTest.php`. 
+    Read more here: `https://laravel.com/docs/10.x/database-testing#resetting-the-database-after-each-test`
+    3. If we don't refresh the database, we most probably need to run the migrations as when I run the test without the 
+    `RefreshDatabase` trait, I got an error `SQLSTATE[42S02]: Base table or view not found: 1146 Table 'testing.lessons' doesn't exist `.
+    4. See docs for testing
+       1. Getting started - `https://laravel.com/docs/10.x/testing`
+       2. Testing JSON APIs - `https://laravel.com/docs/10.x/http-tests#testing-json-apis`
+    5. Maybe you need to setup some setup and tearDown methods
+    6. See test example class for this lesson - `tests/Feature/LessonsTest.php`
+    7. How to run tests: sail artisan test
+    8. How to test one test class: sail artisan test --filter LessonsTest
+11. Continue on lesson 11
       
